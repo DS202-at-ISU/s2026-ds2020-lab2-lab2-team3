@@ -40,11 +40,14 @@ names(ames)
 
 ## step 2 (is there a variable of special interest or focus? Let's call it the "main variable")
 
+```{r}
+# Finding Sales Price
+summary(ames$`Sale Price`)
 
+# Range of Ames Sales Price
+range(ames$`Sale Price`, na.rm = TRUE)
 
-
-
-
+```
 
 ## step 3 (start the exploration with the main variable: what is the range of this variable? draw a histogram for a numeric variable or a bar chart, if the variable is categorical. what is the general pattern? is there anything odd?)
 

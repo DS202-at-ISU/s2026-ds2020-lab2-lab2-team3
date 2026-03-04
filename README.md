@@ -56,6 +56,29 @@ names(ames)
 
 ## step 2 (is there a variable of special interest or focus? Let’s call it the “main variable”)
 
+``` r
+# Finding Sales Price
+summary(ames$`Sale Price`)
+```
+
+    ##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+    ##        0        0   170900  1017479   280000 20500000
+
+``` r
+# Range of Ames Sales Price
+range(ames$`Sale Price`, na.rm = TRUE)
+```
+
+    ## [1]        0 20500000
+
 ## step 3 (start the exploration with the main variable: what is the range of this variable? draw a histogram for a numeric variable or a bar chart, if the variable is categorical. what is the general pattern? is there anything odd?)
 
 ## step 4 (pick a variable that might be related to the main variable. what is the range of that variable? plot. describe the pattern. what is the relationship to the main variable? plot a scatterplot, boxplot or facetted barcharts dependening on the types of variables involved. Describe overall pattern, does this variable describe any oddities discovered in 3? Identify/follow-up on any oddities.)
+
+Tyler’s work:
+
+Jacob’s work:
+
+Favour’s work:
+
+Kavya’s work:
