@@ -3,6 +3,8 @@ DS202 Lab2 Team3
 
 <!-- README.md is generated from README.Rmd. Please edit the README.Rmd file -->
 
+------------------------------------------------------------------------
+
 # Lab report \#1
 
 Follow the instructions posted at
@@ -19,13 +21,15 @@ grading once the due date is passed. Submit a link to your repository on
 Canvas (only one submission per team) to signal to the instructors that
 you are done with your submission.
 
-## step 1 (inspect the first few lines of the data set: what variables are there? of what type are the variables? what does each variable mean? what do we expect their data range to be?)
+------------------------------------------------------------------------
+
+## Step 1 (inspect the first few lines of the data set: what variables are there? of what type are the variables? what does each variable mean? what do we expect their data range to be?)
 
 ``` r
-# loading data
+# loading data (look at first few lines)
 data(ames)
 
-# insepcting data
+# inspecting data (variables, type, and meaning)
 head(ames)
 ```
 
@@ -44,6 +48,28 @@ head(ames)
     ## #   FirePlace <chr>, Neighborhood <fct>
 
 ``` r
+str(ames)
+```
+
+    ## tibble [6,935 × 16] (S3: tbl_df/tbl/data.frame)
+    ##  $ Parcel ID            : chr [1:6935] "0903202160" "0907428215" "0909428070" "0923203160" ...
+    ##  $ Address              : chr [1:6935] "1024 RIDGEWOOD AVE, AMES" "4503 TWAIN CIR UNIT 105, AMES" "2030 MCCARTHY RD, AMES" "3404 EMERALD DR, AMES" ...
+    ##  $ Style                : Factor w/ 12 levels "1 1/2 Story Brick",..: 2 5 5 5 NA 9 5 5 5 5 ...
+    ##  $ Occupancy            : Factor w/ 5 levels "Condominium",..: 2 1 2 3 NA 2 2 1 2 2 ...
+    ##  $ Sale Date            : Date[1:6935], format: "2022-08-12" "2022-08-04" ...
+    ##  $ Sale Price           : num [1:6935] 181900 127100 0 245000 449664 ...
+    ##  $ Multi Sale           : chr [1:6935] NA NA NA NA ...
+    ##  $ YearBuilt            : num [1:6935] 1940 2006 1951 1997 NA ...
+    ##  $ Acres                : num [1:6935] 0.109 0.027 0.321 0.103 0.287 0.494 0.172 0.023 0.285 0.172 ...
+    ##  $ TotalLivingArea (sf) : num [1:6935] 1030 771 1456 1289 NA ...
+    ##  $ Bedrooms             : num [1:6935] 2 1 3 4 NA 4 5 1 3 4 ...
+    ##  $ FinishedBsmtArea (sf): num [1:6935] NA NA 1261 890 NA ...
+    ##  $ LotArea(sf)          : num [1:6935] 4740 1181 14000 4500 12493 ...
+    ##  $ AC                   : chr [1:6935] "Yes" "Yes" "Yes" "Yes" ...
+    ##  $ FirePlace            : chr [1:6935] "Yes" "No" "No" "No" ...
+    ##  $ Neighborhood         : Factor w/ 42 levels "(0) None","(13) Apts: Campus",..: 15 40 19 18 6 24 14 40 13 23 ...
+
+``` r
 names(ames)
 ```
 
@@ -54,16 +80,20 @@ names(ames)
     ## [13] "LotArea(sf)"           "AC"                    "FirePlace"            
     ## [16] "Neighborhood"
 
-As a team, we found that there are 16 variables in total. “Parcel ID”,
-“Address”, “Multi Sale”, “AC”, and “FirePlace” are chr variables.
-“Style”, “Occupancy”, and “Neighborhood” are fctr variables. “Sale
-Price”, YearBuilt”, “Acres”, “TotalLivingArea (sf)”, “Bedrooms”,
+**Answer:** As a team, we found that there are 16 variables in total.
+“Parcel ID”, “Address”, “Multi Sale”, “AC”, and “FirePlace” are chr
+variables. “Style”, “Occupancy”, and “Neighborhood” are fctr variables.
+“Sale Price”, YearBuilt”, “Acres”, “TotalLivingArea (sf)”, “Bedrooms”,
 “FinishedBsmtArea (sf)”, and LotArea(sf) are dbl variables. Lastly,
 “Sale Date” is a date variable. Most of these variables are
-self-explanatory based on their names. \## step 2 (is there a variable
-of special interest or focus? Let’s call it the “main variable”)
+self-explanatory based on their names. More in specific, some variables
+are numeric (Sale Price and LotArea) and some variables are categorical
+(Occupancy ,Neighborhood). Sale Price represents the selling price of
+the house.
 
-# \<\<\<\<\<\<\< HEAD
+------------------------------------------------------------------------
+
+## Step 2 (is there a variable of special interest or focus? Let’s call it the “main variable”)
 
 ``` r
 # Finding Sales Price
@@ -80,20 +110,42 @@ range(ames$`Sale Price`, na.rm = TRUE)
 
     ## [1]        0 20500000
 
-As a group, we found that the main variable of interest is sales price,
-which represents the final selling price of houses in Ames. This
-variable helps us understand how different housing features like size,
-bedrooms, neighborhood, and year built may affect the price of a home.
+**Answer:** As a team, we found that the main variable of interest is
+Sale Price, which represents the final selling price of houses in Ames.
+This variable helps us understand how different housing features like
+size, bedrooms, neighborhood, and year built may affect the price of a
+home.
 
-> > > > > > > 5c7ff84bd8d844d19a7ad284be6c890a4f8e0314 \## step 3 (start
-> > > > > > > the exploration with the main variable: what is the range
-> > > > > > > of this variable? draw a histogram for a numeric variable
-> > > > > > > or a bar chart, if the variable is categorical. what is
-> > > > > > > the general pattern? is there anything odd?)
+------------------------------------------------------------------------
 
-## step 4 (pick a variable that might be related to the main variable. what is the range of that variable? plot. describe the pattern. what is the relationship to the main variable? plot a scatterplot, boxplot or facetted barcharts dependening on the types of variables involved. Describe overall pattern, does this variable describe any oddities discovered in 3? Identify/follow-up on any oddities.)
+## Step 3 (start the exploration with the main variable: what is the range of this variable? draw a histogram for a numeric variable or a bar chart, if the variable is categorical. what is the general pattern? is there anything odd?)
 
-Tyler’s work:
+``` r
+# checked summary and range above
+summary(ames$`Sale Price`)
+```
+
+    ##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+    ##        0        0   170900  1017479   280000 20500000
+
+``` r
+range(ames$`Sale Price`)
+```
+
+    ## [1]        0 20500000
+
+``` r
+# creating histogram
+# we need to work on this part! 
+```
+
+**Answer:** As a team, we found that
+
+------------------------------------------------------------------------
+
+## Step 4 (pick a variable that might be related to the main variable. what is the range of that variable? plot. describe the pattern. what is the relationship to the main variable? plot a scatterplot, boxplot or facetted barcharts dependening on the types of variables involved. Describe overall pattern, does this variable describe any oddities discovered in 3? Identify/follow-up on any oddities.)
+
+**Tyler’s work:**
 
 ``` r
 #my variable is TotalLivingArea (sf)
@@ -117,14 +169,53 @@ ames %>%
   ggplot(aes(x = LivingAreaBin, y = AvgSalePrice)) + geom_col(fill = "steelblue") + labs( title = "Average Sale Price by Living Area", x = "Total Living Area (binned)", y = "Average Sale Price" ) + theme_minimal() + theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- --> <br> From
-this bar plot, we can see that the lower total living area houses tend
-to have a higher average sale price. I find it odd that the higher
-living area houses are cheaper, as you would think that the bigger
-houses would be more expensive.
+![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
-Jacob’s work:
+Explanation: From this bar plot, we can see that the lower total living
+area houses tend to have a higher average sale price. I find it odd that
+the higher living area houses are cheaper, as you would think that the
+bigger houses would be more expensive.
 
-Favour’s work:
+**Jacob’s work:**
 
-Kavya’s work:
+``` r
+# Bedrooms (clean the data to make it as visually clear)
+clean_data <- ames %>%
+  filter(Bedrooms > 0, Bedrooms < 8, `Sale Price` < 500000)
+
+# using ggplot to create plot
+ggplot(clean_data, aes(x = factor(Bedrooms), y = `Sale Price`)) +
+  geom_boxplot() +
+  labs(title = "Sale Price by Bedrooms", x = "Number of Bedrooms", y = "Sale Price")
+```
+
+![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+
+Explanation: I chose Bedrooms to investigate the relationship between
+Bedrooms and Sale Price. I cleaned the data in order to create visually
+clear plot. The range of Bedrooms in the cleaned data is from 1 to 7. By
+looking at the plot, houses with more bedrooms tend to have higher Sale
+Price. More in specific, houses with 3-5 bedrooms have higher mean
+compare to houses with 1-2 bedrooms. There is a wide range of prices
+within each bedroom group which suggests that Bedrooms may influence
+Sale Price, and other factors may also influence the Sale Price.
+However, there are some unusual results that some houses with fewer
+bedrooms still have relatively high prices. In these cases, we might
+need further analysis with different variables such as Address, Style,
+or Occupancy.
+
+**Favour’s work:**
+
+``` r
+# Favour's code here!
+```
+
+Explanation:
+
+**Kavya’s work:**
+
+``` r
+# Kavya's code here!
+```
+
+Explanation:

@@ -7,9 +7,15 @@ output: github_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+# loading packages
 library(tidyverse)
 library(classdata)
+library(dplyr) 
+library(ggplot2) 
 ```
+
+--- 
 
 # Lab report #1
 
@@ -19,37 +25,56 @@ Include your answers in this document (Rmd file). Make sure that it knits proper
 
 All submissions to the github repo will be automatically uploaded for grading once the due date is passed. Submit a link to your repository on Canvas (only one submission per team) to signal to the instructors that you are done with your submission.
 
-## step 1 (inspect the first few lines of the data set: what variables are there? of what type are the variables? what does each variable mean? what do we expect their data range to be?)
+---
+
+## Step 1 (inspect the first few lines of the data set: what variables are there? of what type are the variables? what does each variable mean? what do we expect their data range to be?)
 
 ```{r}
-# loading data
+# loading data (look at first few lines)
 data(ames)
 
-# insepcting data
+# inspecting data (variables, type, and meaning)
 head(ames)
+str(ames)
 names(ames)
 ```
-As a team, we found that there are 16 variables in total. “Parcel ID”, “Address”, “Multi Sale”, “AC”,  and “FirePlace” are chr variables. “Style”, “Occupancy”, and “Neighborhood” are fctr variables. “Sale Price”, YearBuilt”, “Acres”, “TotalLivingArea (sf)”, “Bedrooms”, “FinishedBsmtArea (sf)”, and LotArea(sf) are dbl variables. Lastly, “Sale Date” is a date variable. Most of these variables are self-explanatory based on their names. 
-## step 2 (is there a variable of special interest or focus? Let's call it the "main variable")
 
-<<<<<<< HEAD
-=======
+**Answer:** As a team, we found that there are 16 variables in total. “Parcel ID”, “Address”, “Multi Sale”, “AC”,  and “FirePlace” are chr variables. “Style”, “Occupancy”, and “Neighborhood” are fctr variables. “Sale Price”, YearBuilt”, “Acres”, “TotalLivingArea (sf)”, “Bedrooms”, “FinishedBsmtArea (sf)”, and LotArea(sf) are dbl variables. Lastly, “Sale Date” is a date variable. Most of these variables are self-explanatory based on their names. More in specific, some variables are numeric (Sale Price and LotArea) and some variables are categorical (Occupancy ,Neighborhood). Sale Price represents the selling price of the house. 
+
+---
+
+## Step 2 (is there a variable of special interest or focus? Let's call it the "main variable")
+
 ```{r}
 # Finding Sales Price
 summary(ames$`Sale Price`)
 
 # Range of Ames Sales Price
 range(ames$`Sale Price`, na.rm = TRUE)
-
 ```
-As a group, we found that the main variable of interest is sales price, which represents the final selling price of houses in Ames. This variable helps us understand how different housing features like size, bedrooms, neighborhood, and year built may affect the price of a home.
 
->>>>>>> 5c7ff84bd8d844d19a7ad284be6c890a4f8e0314
-## step 3 (start the exploration with the main variable: what is the range of this variable? draw a histogram for a numeric variable or a bar chart, if the variable is categorical. what is the general pattern? is there anything odd?)
+**Answer:** As a team, we found that the main variable of interest is Sale Price, which represents the final selling price of houses in Ames. This variable helps us understand how different housing features like size, bedrooms, neighborhood, and year built may affect the price of a home.
 
-## step 4 (pick a variable that might be related to the main variable. what is the range of that variable? plot. describe the pattern. what is the relationship to the main variable? plot a scatterplot, boxplot or facetted barcharts dependening on the types of variables involved. Describe overall pattern, does this variable describe any oddities discovered in 3? Identify/follow-up on any oddities.)
+---
 
-Tyler's work:
+## Step 3 (start the exploration with the main variable: what is the range of this variable? draw a histogram for a numeric variable or a bar chart, if the variable is categorical. what is the general pattern? is there anything odd?)
+
+```{r}
+# checked summary and range above
+summary(ames$`Sale Price`)
+range(ames$`Sale Price`)
+
+# creating histogram
+# we need to work on this part! 
+```
+
+**Answer:** As a team, we found that 
+
+---
+
+## Step 4 (pick a variable that might be related to the main variable. what is the range of that variable? plot. describe the pattern. what is the relationship to the main variable? plot a scatterplot, boxplot or facetted barcharts dependening on the types of variables involved. Describe overall pattern, does this variable describe any oddities discovered in 3? Identify/follow-up on any oddities.)
+
+**Tyler's work:**
 ```{r}
 #my variable is TotalLivingArea (sf)
 
@@ -65,12 +90,36 @@ ames %>%
   group_by(LivingAreaBin) %>% 
   summarise(AvgSalePrice = mean(`Sale Price`, na.rm = TRUE)) %>% 
   ggplot(aes(x = LivingAreaBin, y = AvgSalePrice)) + geom_col(fill = "steelblue") + labs( title = "Average Sale Price by Living Area", x = "Total Living Area (binned)", y = "Average Sale Price" ) + theme_minimal() + theme(axis.text.x = element_text(angle = 45, hjust = 1))
-
 ```
-<br> From this bar plot, we can see that the lower total living area houses tend to have a higher average sale price. I find it odd that the higher living area houses are cheaper, as you would think that the bigger houses would be more expensive. 
 
-Jacob's work:
+Explanation: From this bar plot, we can see that the lower total living area houses tend to have a higher average sale price. I find it odd that the higher living area houses are cheaper, as you would think that the bigger houses would be more expensive. 
 
-Favour's work:
+**Jacob's work:**
+```{r}
+# Bedrooms (clean the data to make it as visually clear)
+clean_data <- ames %>%
+  filter(Bedrooms > 0, Bedrooms < 8, `Sale Price` < 500000)
 
-Kavya's work:
+# using ggplot to create plot
+ggplot(clean_data, aes(x = factor(Bedrooms), y = `Sale Price`)) +
+  geom_boxplot() +
+  labs(title = "Sale Price by Bedrooms", x = "Number of Bedrooms", y = "Sale Price")
+```
+
+Explanation: I chose Bedrooms to investigate the relationship between Bedrooms and Sale Price. I cleaned the data in order to create visually clear plot. The range of Bedrooms in the cleaned data is from 1 to 7. By looking at the plot, houses with more bedrooms tend to have higher Sale Price. More in specific, houses with 3-5 bedrooms have higher mean compare to houses with 1-2 bedrooms. There is a wide range of prices within each bedroom group which suggests that Bedrooms may influence Sale Price, and other factors may also influence the Sale Price. However, there are some unusual results that some houses with fewer bedrooms still have relatively high prices. In these cases, we might need further analysis with different variables such as Address, Style, or Occupancy. 
+
+**Favour's work:**
+```{r}
+# Favour's code here!
+```
+
+Explanation:
+
+**Kavya's work:**
+```{r}
+# Kavya's code here!
+```
+
+Explanation:
+
+
