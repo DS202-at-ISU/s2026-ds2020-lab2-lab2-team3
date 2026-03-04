@@ -71,6 +71,11 @@ range(ames$`Sale Price`, na.rm = TRUE)
 
     ## [1]        0 20500000
 
+As a group, we found that the main variable of interest is sales price,
+which represents the final selling price of houses in Ames. This
+variable helps us understand how different housing features like size,
+bedrooms, neighborhood, and year built may affect the price of a home.
+
 ## step 3 (start the exploration with the main variable: what is the range of this variable? draw a histogram for a numeric variable or a bar chart, if the variable is categorical. what is the general pattern? is there anything odd?)
 
 ## step 4 (pick a variable that might be related to the main variable. what is the range of that variable? plot. describe the pattern. what is the relationship to the main variable? plot a scatterplot, boxplot or facetted barcharts dependening on the types of variables involved. Describe overall pattern, does this variable describe any oddities discovered in 3? Identify/follow-up on any oddities.)
