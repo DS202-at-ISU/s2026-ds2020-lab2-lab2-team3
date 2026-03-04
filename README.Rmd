@@ -29,7 +29,7 @@ data(ames)
 head(ames)
 names(ames)
 ```
-
+As a team, we found that there are 16 variables in total. “Parcel ID”, “Address”, “Multi Sale”, “AC”,  and “FirePlace” are chr variables. “Style”, “Occupancy”, and “Neighborhood” are fctr variables. “Sale Price”, YearBuilt”, “Acres”, “TotalLivingArea (sf)”, “Bedrooms”, “FinishedBsmtArea (sf)”, and LotArea(sf) are dbl variables. Lastly, “Sale Date” is a date variable. Most of these variables are self-explanatory based on their names. 
 ## step 2 (is there a variable of special interest or focus? Let's call it the "main variable")
 
 ## step 3 (start the exploration with the main variable: what is the range of this variable? draw a histogram for a numeric variable or a bar chart, if the variable is categorical. what is the general pattern? is there anything odd?)
