@@ -50,6 +50,24 @@ As a group, we found that the main variable of interest is sales price, which re
 ## step 4 (pick a variable that might be related to the main variable. what is the range of that variable? plot. describe the pattern. what is the relationship to the main variable? plot a scatterplot, boxplot or facetted barcharts dependening on the types of variables involved. Describe overall pattern, does this variable describe any oddities discovered in 3? Identify/follow-up on any oddities.)
 
 Tyler's work:
+```{r}
+#my variable is TotalLivingArea (sf)
+
+range(ames$`TotalLivingArea (sf)`, na.rm = TRUE)
+# ^this^ function shows the range is 0-6007
+
+#bar graph with the total living area binned
+library(dplyr) 
+library(ggplot2) 
+ames %>% 
+  mutate( LivingAreaBin = cut(`TotalLivingArea (sf)`, breaks = 6, dig.lab = 6) 
+          ) %>% 
+  group_by(LivingAreaBin) %>% 
+  summarise(AvgSalePrice = mean(`Sale Price`, na.rm = TRUE)) %>% 
+  ggplot(aes(x = LivingAreaBin, y = AvgSalePrice)) + geom_col(fill = "steelblue") + labs( title = "Average Sale Price by Living Area", x = "Total Living Area (binned)", y = "Average Sale Price" ) + theme_minimal() + theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+<br> From this bar plot, we can see that the lower total living area houses tend to have a higher average sale price. I find it odd that the higher living area houses are cheaper, as you would think that the bigger houses would be more expensive. 
 
 Jacob's work:
 

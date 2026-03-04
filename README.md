@@ -54,7 +54,16 @@ names(ames)
     ## [13] "LotArea(sf)"           "AC"                    "FirePlace"            
     ## [16] "Neighborhood"
 
-## step 2 (is there a variable of special interest or focus? Let’s call it the “main variable”)
+As a team, we found that there are 16 variables in total. “Parcel ID”,
+“Address”, “Multi Sale”, “AC”, and “FirePlace” are chr variables.
+“Style”, “Occupancy”, and “Neighborhood” are fctr variables. “Sale
+Price”, YearBuilt”, “Acres”, “TotalLivingArea (sf)”, “Bedrooms”,
+“FinishedBsmtArea (sf)”, and LotArea(sf) are dbl variables. Lastly,
+“Sale Date” is a date variable. Most of these variables are
+self-explanatory based on their names. \## step 2 (is there a variable
+of special interest or focus? Let’s call it the “main variable”)
+
+# \<\<\<\<\<\<\< HEAD
 
 ``` r
 # Finding Sales Price
@@ -76,11 +85,43 @@ which represents the final selling price of houses in Ames. This
 variable helps us understand how different housing features like size,
 bedrooms, neighborhood, and year built may affect the price of a home.
 
-## step 3 (start the exploration with the main variable: what is the range of this variable? draw a histogram for a numeric variable or a bar chart, if the variable is categorical. what is the general pattern? is there anything odd?)
+> > > > > > > 5c7ff84bd8d844d19a7ad284be6c890a4f8e0314 \## step 3 (start
+> > > > > > > the exploration with the main variable: what is the range
+> > > > > > > of this variable? draw a histogram for a numeric variable
+> > > > > > > or a bar chart, if the variable is categorical. what is
+> > > > > > > the general pattern? is there anything odd?)
 
 ## step 4 (pick a variable that might be related to the main variable. what is the range of that variable? plot. describe the pattern. what is the relationship to the main variable? plot a scatterplot, boxplot or facetted barcharts dependening on the types of variables involved. Describe overall pattern, does this variable describe any oddities discovered in 3? Identify/follow-up on any oddities.)
 
 Tyler’s work:
+
+``` r
+#my variable is TotalLivingArea (sf)
+
+range(ames$`TotalLivingArea (sf)`, na.rm = TRUE)
+```
+
+    ## [1]    0 6007
+
+``` r
+# ^this^ function shows the range is 0-6007
+
+#bar graph with the total living area binned
+library(dplyr) 
+library(ggplot2) 
+ames %>% 
+  mutate( LivingAreaBin = cut(`TotalLivingArea (sf)`, breaks = 6, dig.lab = 6) 
+          ) %>% 
+  group_by(LivingAreaBin) %>% 
+  summarise(AvgSalePrice = mean(`Sale Price`, na.rm = TRUE)) %>% 
+  ggplot(aes(x = LivingAreaBin, y = AvgSalePrice)) + geom_col(fill = "steelblue") + labs( title = "Average Sale Price by Living Area", x = "Total Living Area (binned)", y = "Average Sale Price" ) + theme_minimal() + theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- --> <br> From
+this bar plot, we can see that the lower total living area houses tend
+to have a higher average sale price. I find it odd that the higher
+living area houses are cheaper, as you would think that the bigger
+houses would be more expensive.
 
 Jacob’s work:
 
