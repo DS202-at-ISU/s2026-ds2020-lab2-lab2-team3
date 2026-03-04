@@ -112,7 +112,7 @@ ggplot(clean_data, aes(x = factor(Bedrooms), y = `Sale Price`)) +
   labs(title = "Sale Price by Bedrooms", x = "Number of Bedrooms", y = "Sale Price")
 ```
 
-Explanation: I chose Bedrooms to investigate the relationship between Bedrooms and Sale Price. I cleaned the data in order to create visually clear plot. The range of Bedrooms in the cleaned data is from 1 to 7. By looking at the plot, houses with more bedrooms tend to have higher Sale Price. More in specific, houses with 3-5 bedrooms have higher mean compare to houses with 1-2 bedrooms. There is a wide range of prices within each bedroom group which suggests that Bedrooms may influence Sale Price, and other factors may also influence the Sale Price. However, there are some unusual results that some houses with fewer bedrooms still have relatively high prices. In these cases, we might need further analysis with different variables such as Address, Style, or Occupancy. 
+Explanation: I chose Bedrooms to investigate the relationship between Bedrooms and Sale Price. I cleaned the data in order to create visually clear plot. The range of Bedrooms in the cleaned data is from 1 to 7. By looking at the plot, houses with more bedrooms tend to have higher Sale Price. More in specific, houses with 3-5 bedrooms have higher mean compare to houses with 1-2 bedrooms. There is a wide range of prices within each bedroom group which suggests that Bedrooms may influence Sale Price, and other factors may also influence the Sale Price. However, there are some unusual results that some houses with fewer bedrooms still have relatively high prices. In these cases, we might need further analysis with different variables such as Address or Style. 
 
 **Favour's work:**
 ```{r}

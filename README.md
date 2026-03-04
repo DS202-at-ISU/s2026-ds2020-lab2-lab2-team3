@@ -219,8 +219,7 @@ within each bedroom group which suggests that Bedrooms may influence
 Sale Price, and other factors may also influence the Sale Price.
 However, there are some unusual results that some houses with fewer
 bedrooms still have relatively high prices. In these cases, we might
-need further analysis with different variables such as Address, Style,
-or Occupancy.
+need further analysis with different variables such as Address or Style.
 
 **Favour’s work:**
 
