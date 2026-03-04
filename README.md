@@ -135,11 +135,29 @@ range(ames$`Sale Price`)
     ## [1]        0 20500000
 
 ``` r
+# Sale Price clean the data to make it as visually clear
+ames_sale_price <- ames %>%
+  filter(`Sale Price` > 0, `Sale Price` < 500000)
+
 # creating histogram
-# we need to work on this part! 
+ggplot(ames_sale_price, aes(x = `Sale Price`)) +
+  geom_histogram(bins = 25) +
+  labs(title = "Distribution of Sale Prices (under $500,000)", x = "Sale Price", y = "Count")
 ```
 
-**Answer:** As a team, we found that
+![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+
+**Answer:** As a team, we found that the main variable is Sale Price. By
+looking at the summary, the range of Sale Price is from 0 to 20,500,000.
+The histogram above shows that the distribution of Sale Price for houses
+under 500,000 (cleaning). More in specific, most houses are sold between
+100,000 and 300,000 indicating that the concentration. We are able to
+know that the histogram of the distribution is right-skewed. This means
+that most houses are tend to sold at lower price with smaller number of
+houses have higher prices. One unusual point is that few houses have
+large Sale Price which makes us to interpret difficulty. Since we
+cleaned the data set in order to have visually clear output, oddity
+looks okay.
 
 ------------------------------------------------------------------------
 
