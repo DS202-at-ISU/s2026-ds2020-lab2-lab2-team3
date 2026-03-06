@@ -103,13 +103,6 @@ summary(ames$`Sale Price`)
     ##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
     ##        0        0   170900  1017479   280000 20500000
 
-``` r
-# Range of Ames Sales Price
-range(ames$`Sale Price`, na.rm = TRUE)
-```
-
-    ## [1]        0 20500000
-
 **Answer:** As a team, we found that the main variable of interest is
 Sale Price, which represents the final selling price of houses in Ames.
 This variable helps us understand how different housing features like
@@ -232,7 +225,63 @@ Explanation:
 **Kavya’s work:**
 
 ``` r
-# Kavya's code here!
+# Check the different neighborhoods in the dataset
+table(ames$Neighborhood)
 ```
 
-Explanation:
+    ## 
+    ##                  (0) None         (13) Apts: Campus          (14) Apts: North 
+    ##                        66                         2                         1 
+    ##          (15) Apts: South (17) Apts: Hospital and D (19) Res: North Ridge Hei 
+    ##                         2                         5                       420 
+    ##      (20) Res: Northridge         (21) Res: Veenker          (22) Res: Timber 
+    ##                       154                        63                       194 
+    ##     (23) Res: Clear Creek        (24) Res: Somerset         (25) Res: Gilbert 
+    ##                       119                       193                       184 
+    ##         (26) Res: NW Ames          (27) Res: N Ames       (28) Res: Brookside 
+    ##                       272                       854                       199 
+    ##        (29) Res: Old Town   (30) Res: Iowa DOT & RR        (31) Res: Mitchell 
+    ##                       469                       231                       216 
+    ##        (32) Res: Crawford       (33) Res: S & W ISU         (34) Res: Edwards 
+    ##                       227                       102                       444 
+    ##          (35) Res: Sawyer     (36) Res: Sawyer West   (37) Res: College Creek 
+    ##                       233                       225                       652 
+    ##     (38) Res: Hayden Lake       (39) Res: Briardale (40) Res: North Park Vill 
+    ##                       228                        56                        43 
+    ##          (41) Res: Greens  (42) Res: Meadow Village    (43) Res: Stone Brooke 
+    ##                         9                        73                       101 
+    ##     (44) Res: Bloomington     (46) Res: Green Hills        (47) Res: Bluestem 
+    ##                        59                       127                        41 
+    ##  (48) Res: Landmark Villa     (49) Res: Misc Condos   (50) Central City Condo 
+    ##                        49                         8                        11 
+    ## (51) University Influence  (52) Res: Willow Creek 2  (53) Res: Willow Creek 1 
+    ##                        25                        21                        25 
+    ##    (55) Res: Dakota Ridge  (57) Res: Investor Owned  (6) C/I:Lincoln Way-Duff 
+    ##                        56                       474                         2
+
+``` r
+# Horizontal bar chart for Neighborhood counts
+barplot(table(ames$Neighborhood),
+        main = "Number of Houses by Neighborhood",
+        xlab = "Count",
+        ylab = "Neighborhood",
+        horiz = TRUE,      
+        las = 1,             
+        cex.names = 0.3)  
+```
+
+![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+
+Explanation: For my investigation, I choose the variable Neighborhood,
+which represents the location house. This variable is categorical, so
+instead of a numeric range it contains several different neighborhood
+categories.Neighborhoods like NW Ames and Sawyer West appear to have a
+higher number of recorded sales, while several other neighborhoods have
+much smaller counts.
+
+Overall, the pattern suggests that housing sales are not evenly
+distributed across neighborhoods. Some areas have significantly more
+properties in the dataset, which may indicate that those neighborhoods
+are larger or have more active housing markets. This variable may also
+help explain differences in sale prices because houses in certain
+neighborhoods may generally be more expensive than others.

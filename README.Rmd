@@ -49,8 +49,6 @@ names(ames)
 # Finding Sales Price
 summary(ames$`Sale Price`)
 
-# Range of Ames Sales Price
-range(ames$`Sale Price`, na.rm = TRUE)
 ```
 
 **Answer:** As a team, we found that the main variable of interest is Sale Price, which represents the final selling price of houses in Ames. This variable helps us understand how different housing features like size, bedrooms, neighborhood, and year built may affect the price of a home.
@@ -123,9 +121,22 @@ Explanation:
 
 **Kavya's work:**
 ```{r}
-# Kavya's code here!
+# Check the different neighborhoods in the dataset
+table(ames$Neighborhood)
+# Horizontal bar chart for Neighborhood counts
+barplot(table(ames$Neighborhood),
+        main = "Number of Houses by Neighborhood",
+        xlab = "Count",
+        ylab = "Neighborhood",
+        horiz = TRUE,      
+        las = 1,             
+        cex.names = 0.3)  
+
 ```
 
-Explanation:
+Explanation: For my investigation, I choose the variable Neighborhood, which represents the location house. This variable is categorical, so instead of a numeric range it contains several different neighborhood categories.Neighborhoods like NW Ames and Sawyer West appear to have a higher number of recorded sales, while several other neighborhoods have much smaller counts.
+
+Overall, the pattern suggests that housing sales are not evenly distributed across neighborhoods. Some areas have significantly more properties in the dataset, which may indicate that those neighborhoods are larger or have more active housing markets. This variable may also help explain differences in sale prices because houses in certain neighborhoods may generally be more expensive than others.
+
 
 
