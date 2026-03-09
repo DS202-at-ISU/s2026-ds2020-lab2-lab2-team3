@@ -103,6 +103,12 @@ summary(ames$`Sale Price`)
     ##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
     ##        0        0   170900  1017479   280000 20500000
 
+``` r
+range(ames$`Sale Price`)
+```
+
+    ## [1]        0 20500000
+
 **Answer:** As a team, we found that the main variable of interest is
 Sale Price, which represents the final selling price of houses in Ames.
 This variable helps us understand how different housing features like
