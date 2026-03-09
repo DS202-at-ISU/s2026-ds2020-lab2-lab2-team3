@@ -224,9 +224,32 @@ need further analysis with different variables such as Address or Style.
 
 ``` r
 # Favour's code here!
+range(ames$YearBuilt, na.rm = TRUE)
 ```
 
-Explanation:
+    ## [1]    0 2022
+
+``` r
+# Scatterplot showing relationship between YearBuilt and Sale Price
+ggplot(ames, aes(x = YearBuilt, y = `Sale Price`)) +
+  geom_point(alpha = 0.3) +
+  labs(title = "Sale Price vs Year Built",
+       x = "Year Built",
+       y = "Sale Price")
+```
+
+    ## Warning: Removed 447 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+
+Explanation: For my investigation, I explored the relationship between
+YearBuilt and Sale Price. The range of YearBuilt shows that houses in
+the dataset were built across many years, from older homes to more
+recently built houses. The scatterplot suggests that newer homes tend to
+have higher sale prices, although there are still variations because of
+other factors like size, neighborhood, and house condition also
+influence price.
 
 **Kavya’s work:**
 

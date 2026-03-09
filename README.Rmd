@@ -145,7 +145,3 @@ barplot(table(ames$Neighborhood),
 Explanation: For my investigation, I choose the variable Neighborhood, which represents the location house. This variable is categorical, so instead of a numeric range it contains several different neighborhood categories.Neighborhoods like NW Ames and Sawyer West appear to have a higher number of recorded sales, while several other neighborhoods have much smaller counts.
 
 Overall, the pattern suggests that housing sales are not evenly distributed across neighborhoods. Some areas have significantly more properties in the dataset, which may indicate that those neighborhoods are larger or have more active housing markets. This variable may also help explain differences in sale prices because houses in certain neighborhoods may generally be more expensive than others.
-
-
-some random sentences
-
